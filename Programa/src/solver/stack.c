@@ -5,9 +5,7 @@
 
 Stack *stack_init()
 {
-  /* Aqui agrega tu código */
-  
-  Stack *stack=(Stack *)malloc((sizeof( Stack)));
+  Stack *stack=(Stack *)malloc((sizeof(Stack)));
   stack->head=NULL;
   return stack;
 }
@@ -42,32 +40,6 @@ void push(Stack* stack, int color)
   return;
 }
 
-// pop recursive
-
-
-// int pop(Stack* stack,int color)
-// {
-//   printf("HO99");
-//   int valor=stack->head->color;
-//   printf("VALOR:\n");
-//   printf("%d\n",valor);
-//   stack->head=stack->head->siguiente;
-//   printf("HO");
-//   if(valor==color){
-//     printf("%d\n",valor);
-//     // printf("HOO");
-//     return valor;
-//   }
-//   else if (stack->head){
-//     printf("%d\n",valor);
-//     // printf("HOOO");
-//     return pop(stack,color);
-//   }
-//   else{
-//     printf("vacio");
-//   }
-// }
-
 int pop(Stack* stack,int color)
 {
   // printf("COLOR POP: %d\n",color);
@@ -90,8 +62,9 @@ int pop(Stack* stack,int color)
 void destroy(Stack *stack)
 {
   while(stack->head!=NULL){
-    free(stack->head);
-    stack->head=stack->head->siguiente;
+    struct node *aux=stack->head;
+    stack->head=aux->siguiente;
+    free(aux);
   }
 }
 
@@ -121,6 +94,7 @@ void destroy_tabla(int **tabla,int n_filas,int n_columnas)
 for (int fila=0;fila<n_filas;fila++){
   for (int col=0;col<n_columnas;col++){
     destroy(tabla[fila][col]);
+    free(tabla[fila][col]);
   }
   free(tabla[fila]);
 }
