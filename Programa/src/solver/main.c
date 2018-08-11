@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 		// printf("%d\n",value);
 	}
 	destroy_tabla(tablero,n,m);
+	free(tablero);
 	/* Cerramos los archivos correctamente */
 	fclose(input_file);
 	fclose(output_file);

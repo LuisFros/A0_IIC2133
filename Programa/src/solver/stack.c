@@ -13,12 +13,32 @@ Stack *stack_init()
 }
 
 void push(Stack* stack, int color)
-{
-  struct node *nueva_bola;
-	nueva_bola=(struct node*)malloc(sizeof(struct node));
-  nueva_bola->color=color;
-	nueva_bola->siguiente=stack->head;
-  stack->head=nueva_bola;
+{ 
+  if (stack->head!=NULL){
+    struct node *nueva_bola;
+    nueva_bola=(struct node*)malloc(sizeof(struct node));
+    nueva_bola->color=color;
+    nueva_bola->siguiente=stack->head;
+    stack->head=nueva_bola;
+
+  }
+  else{
+    struct node *nueva_bola;
+    nueva_bola=(struct node*)malloc(sizeof(struct node));
+    nueva_bola->color=color;
+    nueva_bola->siguiente=NULL;
+    stack->head=nueva_bola;
+
+  }
+
+
+  printf("Valor que apunta:  %d\n", *stack->head );
+
+  /*Print the address pointed to by iptr*/
+  printf("Direccion que apunta:  %p\n",stack->head );
+
+  /*Print the address of iptr itself*/
+  printf("Direccion del puntero:  %p\n", &stack->head );
   return;
 }
 
@@ -69,13 +89,10 @@ int pop(Stack* stack,int color)
 
 void destroy(Stack *stack)
 {
-  struct node *actual=stack->head;
   while(stack->head!=NULL){
-    actual=stack->head;
+    free(stack->head);
     stack->head=stack->head->siguiente;
-    free(actual);
   }
-  free(actual);
 }
 
 
@@ -103,7 +120,7 @@ void destroy_tabla(int **tabla,int n_filas,int n_columnas)
 {
 for (int fila=0;fila<n_filas;fila++){
   for (int col=0;col<n_columnas;col++){
-    free(tabla[fila][col]);
+    destroy(tabla[fila][col]);
   }
   free(tabla[fila]);
 }
