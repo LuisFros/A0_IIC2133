@@ -1,4 +1,5 @@
 #pragma once
+#include <stdio.h>
 
 
 typedef struct stack Stack;
@@ -22,7 +23,7 @@ Stack *stack_init();
 
 void push(Stack* stack, int color);
 
-int pop(Stack* stack,int color);
+int pop(Stack* stack,int color,FILE *output_file);
 
 void destroy(Stack *stack);
 

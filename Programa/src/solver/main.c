@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 		
 		// Es un pop?
 		if (o==1){
-			pop(tablero[r][c],k);
+			pop(tablero[r][c],k,output_file);
 		}
 		// Es un push
 		else{

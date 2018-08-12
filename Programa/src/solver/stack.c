@@ -1,6 +1,8 @@
 #include "stack.h"
 #include <stdlib.h>
+#include <stdbool.h>
 #include <stdio.h>
+
 
 void print_stack(Stack *stack){
 	struct node *actual=stack->head;
@@ -39,18 +41,22 @@ void push(Stack* stack, int color)
   return;
 }
 
-int pop(Stack* stack,int color)
+int pop(Stack* stack,int color,FILE *output_file)
 {
+
   struct node *previous;
   while (stack->head!=NULL )
   {
     int valor=stack->head->color;
     printf("%d\n",valor);
+    fprintf(output_file,"%d\n",valor);
     previous=stack->head;
     if(valor==color){
       stack->head=stack->head->siguiente;
       print_stack(stack);
       free(previous);
+      printf("%d\n",valor);
+      fprintf(output_file,"%d\n",valor);    
       return valor;
     }
     stack->head=previous->siguiente;
@@ -58,6 +64,7 @@ int pop(Stack* stack,int color)
 
 
   }
+  fprintf(output_file,"vacio\n");
   printf("vacio\n");
 
 }
