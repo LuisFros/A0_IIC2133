@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	fscanf(input_file, "%d %d %d", &n, &m, &l);
 
 
-	int **tablero;
+	Stack ***tablero;
 	tablero=tabla(n,m);
 	// crea una matriz de NxM
 

@@ -27,6 +27,7 @@ int pop(Stack* stack,int color,FILE *output_file);
 
 void destroy(Stack *stack);
 
-int **tabla(int n_filas,int n_columnas);
+Stack ***tabla(int n_filas,int n_columnas);
 
-void destroy_tabla(int **tabla,int n_filas,int n_columnas);
+
+void destroy_tabla(Stack ***tabla,int n_filas,int n_columnas);

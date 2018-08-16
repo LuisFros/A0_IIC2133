@@ -48,14 +48,14 @@ int pop(Stack* stack,int color,FILE *output_file)
   while (stack->head!=NULL )
   {
     int valor=stack->head->color;
-    printf("%d\n",valor);
+    // printf("%d\n",valor);
     fprintf(output_file,"%d\n",valor);
     previous=stack->head;
     if(valor==color){
       stack->head=stack->head->siguiente;
       print_stack(stack);
       free(previous);
-      printf("%d\n",valor);
+      // printf("%d\n",valor);
       fprintf(output_file,"%d\n",valor);    
       return valor;
     }
@@ -65,7 +65,7 @@ int pop(Stack* stack,int color,FILE *output_file)
 
   }
   fprintf(output_file,"vacio\n");
-  printf("vacio\n");
+  // printf("vacio\n");
 
 }
 
@@ -82,15 +82,15 @@ void destroy(Stack *stack)
 /* A continuación puedes crear cualquier función adicional que ayude en la
   implementación de tu programa */
 
-int **tabla(int n_filas,int n_columnas)
+Stack ***tabla(int n_filas,int n_columnas)
 {
-  int **tabla;
+  Stack ***tabla;
 
-  tabla=(int **)malloc(sizeof(int*)*n_filas);
+  tabla=(Stack ***)malloc(sizeof(Stack**)*n_filas);
 
   for (int fila=0;fila<n_filas;fila++)
   {
-    tabla[fila]=(int *)malloc(sizeof(int)*n_columnas);
+    tabla[fila]=(Stack **)malloc(sizeof(Stack*)*n_columnas);
     for (int col=0;col<n_columnas;col++)
     {
 		  Stack *stack=stack_init();
@@ -101,7 +101,7 @@ int **tabla(int n_filas,int n_columnas)
   return tabla;
 }
 
-void destroy_tabla(int **tabla,int n_filas,int n_columnas)
+void destroy_tabla(Stack ***tabla,int n_filas,int n_columnas)
 {
 for (int fila=0;fila<n_filas;fila++){
   for (int col=0;col<n_columnas;col++){
