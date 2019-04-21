@@ -4,6 +4,8 @@
 #include "stack.h"
 
 
+
+
 int main(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -30,7 +32,7 @@ int main(int argc, char *argv[])
 	fscanf(input_file, "%d %d %d", &n, &m, &l);
 
 
-	int **tablero;
+	Stack ***tablero;
 	tablero=tabla(n,m);
 	// crea una matriz de NxM
 
@@ -57,7 +59,7 @@ int main(int argc, char *argv[])
 		
 		// Es un pop?
 		if (o==1){
-			pop(tablero[r][c],k);
+			pop(tablero[r][c],k,output_file);
 		}
 		// Es un push
 		else{
@@ -69,6 +71,7 @@ int main(int argc, char *argv[])
 		// printf("%d\n",value);
 	}
 	destroy_tabla(tablero,n,m);
+	free(tablero);
 	/* Cerramos los archivos correctamente */
 	fclose(input_file);
 	fclose(output_file);
